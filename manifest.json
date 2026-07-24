@@ -1,0 +1,10 @@
+{
+  "name": "Hair By Jess HQ",
+  "short_name": "Jess HQ",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#F8F5F2",
+  "theme_color": "#D8C5B4",
+  "orientation": "portrait",
+  "icons": []
+}

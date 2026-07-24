@@ -1,0 +1,103 @@
+const screens = {
+  home: `
+    <section class="hero">
+      <h2>Today's Appointments</h2>
+
+      <div class="appointment-card">
+        <div>
+          <strong>9:00</strong>
+          <p>Sarah</p>
+          <small>Full Foils</small>
+        </div>
+        <button>Open</button>
+      </div>
+
+      <div class="appointment-card">
+        <div>
+          <strong>11:30</strong>
+          <p>Emma</p>
+          <small>Root Retouch</small>
+        </div>
+        <button>Open</button>
+      </div>
+
+      <div class="appointment-card">
+        <div>
+          <strong>2:00</strong>
+          <p>Olivia</p>
+          <small>Balayage</small>
+        </div>
+        <button>Open</button>
+      </div>
+    </section>
+  `,
+
+  calendar: `
+    <section class="hero">
+      <h2>Calendar</h2>
+
+      <div class="appointment-card">
+        <strong>Tuesday</strong>
+        <p>3 Appointments</p>
+      </div>
+
+      <div class="appointment-card">
+        <strong>Wednesday</strong>
+        <p>2 Appointments</p>
+      </div>
+    </section>
+  `,
+
+  clients: `
+    <section class="hero">
+      <h2>Clients</h2>
+
+      <div class="appointment-card">
+        <strong>Emma Wilson</strong>
+      </div>
+
+      <div class="appointment-card">
+        <strong>Sarah Jones</strong>
+      </div>
+
+      <div class="appointment-card">
+        <strong>Olivia Smith</strong>
+      </div>
+    </section>
+  `,
+
+  settings: `
+    <section class="hero">
+      <h2>Settings</h2>
+
+      <div class="appointment-card">
+        Business Settings
+      </div>
+
+      <div class="appointment-card">
+        Services
+      </div>
+
+      <div class="appointment-card">
+        Working Hours
+      </div>
+    </section>
+  `
+};
+
+function showScreen(name) {
+  document.querySelector("main").innerHTML = screens[name];
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  showScreen("home");
+
+  const links = document.querySelectorAll("nav a");
+
+  links[0].onclick = () => showScreen("home");
+  links[1].onclick = () => showScreen("calendar");
+  links[2].onclick = () => showScreen("clients");
+  links[3].onclick = () => showScreen("settings");
+
+});

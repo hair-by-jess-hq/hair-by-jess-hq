@@ -1,76 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hair By Jess HQ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="theme-color" content="#F8F5F2">
+<title>Hair By Jess HQ</title>
 
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css">
+<meta name="theme-color" content="#D8C5B4">
+
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<header class="header">
-  <h1>Hair By Jess HQ</h1>
-  <p>Good Morning, Jess ☀️</p>
+<div class="app">
+
+<header class="topbar">
+    <div>
+        <h1>Hair By Jess HQ</h1>
+        <p>Good Morning, Jess ☀️</p>
+    </div>
+
+    <button class="profile">
+        👤
+    </button>
 </header>
 
 <main>
 
-<section class="card">
-  <h2>Today's Appointments</h2>
+<section class="hero">
 
-  <div class="appointment">
-    <strong>9:00</strong>
-    <span>Sarah – Full Foils</span>
-  </div>
+<h2>Today's Appointments</h2>
 
-  <div class="appointment">
-    <strong>11:30</strong>
-    <span>Emma – Root Retouch</span>
-  </div>
+<div class="appointment-card">
 
-  <div class="appointment">
-    <strong>2:00</strong>
-    <span>Olivia – Balayage</span>
-  </div>
+<div>
+<strong>9:00</strong>
+<p>Sarah</p>
+<small>Full Foils</small>
+</div>
+
+<button>
+Open
+</button>
+
+</div>
+
+<div class="appointment-card">
+
+<div>
+<strong>11:30</strong>
+<p>Emma</p>
+<small>Root Retouch</small>
+</div>
+
+<button>
+Open
+</button>
+
+</div>
+
+<div class="appointment-card">
+
+<div>
+<strong>2:00</strong>
+<p>Olivia</p>
+<small>Balayage</small>
+</div>
+
+<button>
+Open
+</button>
+
+</div>
 
 </section>
 
-<section class="card quick">
+<section class="quick-grid">
 
-<button>➕ New Appointment</button>
+<button>
+➕
+<span>Client</span>
+</button>
 
-<button>👩 New Client</button>
+<button>
+📅
+<span>Booking</span>
+</button>
 
-<button>▶ Open Appointment</button>
+<button>
+📸
+<span>Photos</span>
+</button>
+
+<button>
+🎨
+<span>Formula</span>
+</button>
 
 </section>
 
-<section class="card">
+<section class="stats">
 
-<h2>Today's Revenue</h2>
-
+<div class="stat">
 <h3>$485</h3>
+<p>Today's Revenue</p>
+</div>
+
+<div class="stat">
+<h3>3</h3>
+<p>Appointments</p>
+</div>
+
+<div class="stat">
+<h3>4</h3>
+<p>Rebooks</p>
+</div>
 
 </section>
 
 </main>
 
-<nav class="bottom-nav">
+<nav>
 
-<a href="#">🏠<br>Home</a>
+<a class="active">🏠<br>Home</a>
 
-<a href="#">📅<br>Calendar</a>
+<a>📅<br>Calendar</a>
 
-<a href="#">👩<br>Clients</a>
+<a>👩<br>Clients</a>
 
-<a href="#">⚙️<br>Settings</a>
+<a>⚙️<br>Settings</a>
 
 </nav>
+
+</div>
 
 <script src="app.js"></script>
 

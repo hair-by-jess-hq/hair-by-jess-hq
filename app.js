@@ -1,5 +1,5 @@
 // Hair By Jess HQ
-// Build 006
+// Build 009
 
 let clients = JSON.parse(localStorage.getItem("clients")) || [
   {
@@ -13,61 +13,82 @@ function saveClients() {
   localStorage.setItem("clients", JSON.stringify(clients));
 }
 
-function homeScreen() {
+function renderHome() {
+
   document.getElementById("app").innerHTML = `
+
     <section class="hero">
+
       <h2>Good Morning Jess ☀️</h2>
 
-      <div class="appointment-card">
-        <strong>${clients.length}</strong><br>
-        Total Clients
+      <div class="stat">
+        <h3>${clients.length}</h3>
+        <p>Total Clients</p>
       </div>
 
-      <div class="quick-grid">
-        <button onclick="clientScreen()">👩<span>Clients</span></button>
-        <button>📅<span>Calendar</span></button>
-        <button>➕<span>Appointment</span></button>
-        <button>⚙️<span>Settings</span></button>
-      </div>
+      <br>
+
+      <button onclick="renderClients()">
+        👩 Clients
+      </button>
+
     </section>
+
   `;
+
 }
 
-function clientScreen() {
+function renderClients() {
 
   let html = `
+
     <section class="hero">
 
-      <h2>👩 Clients</h2>
+      <h2>Clients</h2>
 
       <input
         id="search"
-        type="text"
-        placeholder="Search clients..."
-        onkeyup="filterClients()"
-        style="
-          width:100%;
-          padding:14px;
-          border-radius:12px;
-          border:1px solid #ddd;
-          margin:15px 0;
-          font-size:16px;
-        "
+        placeholder="Search..."
+        onkeyup="searchClients()"
       >
 
-      <button onclick="newClient()">
-        ➕ New Client
+      <br><br>
+
+      <button onclick="showAddClient()">
+        ➕ Add Client
       </button>
 
       <br><br>
 
       <div id="clientList">
+
   `;
 
   clients.forEach(client => {
 
-    html += `
-      <div class="appointment-card">
+    html += clientCard(client);
+
+  });
+
+  html += `
+
+      </div>
+
+    </section>
+
+  `;
+
+  document.getElementById("app").innerHTML = html;
+
+}
+
+function clientCard(client){
+
+  return `
+
+    <div class="appointment-card">
+
+      <div>
 
         <strong>${client.firstName} ${client.lastName}</strong>
 
@@ -76,61 +97,83 @@ function clientScreen() {
         ${client.phone}
 
       </div>
-    `;
 
-  });
+    </div>
 
-  html += `
-      </div>
-
-    </section>
   `;
 
-  document.getElementById("app").innerHTML = html;
-
-}
 }
 
-function newClient(){
+function searchClients(){
 
-  const html = `
+  const text = document
+    .getElementById("search")
+    .value
+    .toLowerCase();
+
+  let html="";
+
+  clients
+    .filter(c =>
+      (`${c.firstName} ${c.lastName}`)
+      .toLowerCase()
+      .includes(text)
+    )
+    .forEach(c => {
+
+      html += clientCard(c);
+
+    });
+
+  document.getElementById("clientList").innerHTML = html;
+
+}
+
+function showAddClient(){
+
+  document.getElementById("app").innerHTML = `
+
     <section class="hero">
 
-      <h2>➕ New Client</h2>
+      <h2>New Client</h2>
 
-      <input id="firstName" placeholder="First Name"><br><br>
+      <input id="first" placeholder="First Name">
 
-      <input id="lastName" placeholder="Last Name"><br><br>
+      <br><br>
 
-      <input id="phone" placeholder="Mobile"><br><br>
+      <input id="last" placeholder="Last Name">
 
-      <button onclick="saveNewClient()">
+      <br><br>
+
+      <input id="phone" placeholder="Mobile">
+
+      <br><br>
+
+      <button onclick="saveClient()">
+
         Save Client
+
       </button>
 
       <br><br>
 
-      <button onclick="clientScreen()">
+      <button onclick="renderClients()">
+
         Cancel
+
       </button>
 
     </section>
+
   `;
 
-  document.getElementById("app").innerHTML = html;
+}
 
-}function saveNewClient(){
+function saveClient(){
 
-  const firstName =
-    document.getElementById("firstName").value;
+  const first=document.getElementById("first").value.trim();
 
-  const lastName =
-    document.getElementById("lastName").value;
-
-  const phone =
-    document.getElementById("phone").value;
-
-  if(firstName===""){
+  if(first===""){
 
     alert("Please enter a first name");
 
@@ -140,57 +183,25 @@ function newClient(){
 
   clients.push({
 
-    firstName,
+    firstName:first,
 
-    lastName,
+    lastName:document.getElementById("last").value.trim(),
 
-    phone
+    phone:document.getElementById("phone").value.trim()
 
   });
 
   saveClients();
 
-  clientScreen();
+  renderClients();
 
 }
 
-  homeScreen();
+document.addEventListener("DOMContentLoaded",()=>{
+
+  renderHome();
+
+  document.querySelectorAll("nav a")[0].onclick=renderHome;
+  document.querySelectorAll("nav a")[2].onclick=renderClients;
 
 });
-function filterClients(){
-
-  const search = document
-    .getElementById("search")
-    .value
-    .toLowerCase();
-
-  let html = "";
-
-  clients
-    .filter(client =>
-
-      (`${client.firstName} ${client.lastName}`)
-      .toLowerCase()
-      .includes(search)
-
-    )
-
-    .forEach(client => {
-
-      html += `
-        <div class="appointment-card">
-
-          <strong>${client.firstName} ${client.lastName}</strong>
-
-          <br>
-
-          ${client.phone}
-
-        </div>
-      `;
-
-    });
-
-  document.getElementById("clientList").innerHTML = html;
-
-}

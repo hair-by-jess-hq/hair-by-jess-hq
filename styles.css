@@ -137,3 +137,24 @@ nav .active{
 color:black;
 font-weight:bold;
 }
+input{
+
+width:100%;
+
+padding:15px;
+
+border-radius:14px;
+
+border:1px solid #ddd;
+
+font-size:16px;
+
+background:white;
+
+}
+
+button{
+
+cursor:pointer;
+
+}

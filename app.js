@@ -93,18 +93,59 @@ function clientScreen() {
 
 function newClient(){
 
-  const firstName = prompt("First Name");
+  const html = `
+    <section class="hero">
 
-  if(!firstName) return;
+      <h2>➕ New Client</h2>
 
-  const lastName = prompt("Last Name");
+      <input id="firstName" placeholder="First Name"><br><br>
 
-  const phone = prompt("Phone");
+      <input id="lastName" placeholder="Last Name"><br><br>
+
+      <input id="phone" placeholder="Mobile"><br><br>
+
+      <button onclick="saveNewClient()">
+        Save Client
+      </button>
+
+      <br><br>
+
+      <button onclick="clientScreen()">
+        Cancel
+      </button>
+
+    </section>
+  `;
+
+  document.getElementById("app").innerHTML = html;
+
+}function saveNewClient(){
+
+  const firstName =
+    document.getElementById("firstName").value;
+
+  const lastName =
+    document.getElementById("lastName").value;
+
+  const phone =
+    document.getElementById("phone").value;
+
+  if(firstName===""){
+
+    alert("Please enter a first name");
+
+    return;
+
+  }
 
   clients.push({
+
     firstName,
+
     lastName,
+
     phone
+
   });
 
   saveClients();
@@ -112,8 +153,6 @@ function newClient(){
   clientScreen();
 
 }
-
-document.addEventListener("DOMContentLoaded", () => {
 
   homeScreen();
 

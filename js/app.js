@@ -11,29 +11,17 @@ function renderHome() {
 
             <div class="grid">
 
-                <button onclick="showClients()">
-                    👩<br>Clients
-                </button>
+                <button onclick="showClients()">👩<br>Clients</button>
 
-                <button>
-                    📅<br>Calendar
-                </button>
+                <button disabled>📅<br>Calendar</button>
 
-                <button>
-                    💰<br>Payments
-                </button>
+                <button disabled>💰<br>Payments</button>
 
-                <button>
-                    🎨<br>Formulas
-                </button>
+                <button disabled>🎨<br>Formulas</button>
 
-                <button>
-                    📸<br>Photos
-                </button>
+                <button disabled>📸<br>Photos</button>
 
-                <button>
-                    ⚙️<br>Settings
-                </button>
+                <button disabled>⚙️<br>Settings</button>
 
             </div>
 
@@ -44,41 +32,52 @@ function renderHome() {
 function showClients() {
 
     let html = `
-        <h2>👩 Clients</h2>
+        <div class="clients-page">
 
-        <button onclick="showAddClientForm()">
-            ➕ Add Client
-        </button>
+            <h2>👩 Clients</h2>
 
-        <hr>
+            <button onclick="showAddClientForm()">
+                ➕ Add Client
+            </button>
+
+            <hr>
     `;
 
     if (clients.length === 0) {
-        html += `<p>No clients yet.</p>`;
-    }
-
-    clients.forEach(client => {
 
         html += `
-            <div class="client-card">
-
-                <h3>${client.name}</h3>
-
-                <p>📱 ${client.phone || ""}</p>
-
-                <p>📧 ${client.email || ""}</p>
-
-            </div>
+            <p>No clients yet.</p>
         `;
 
-    });
+    } else {
+
+        clients.forEach(client => {
+
+            html += `
+                <div class="client-card">
+
+                    <h3>${client.name}</h3>
+
+                    <p>📱 ${client.phone || "No phone"}</p>
+
+                    <p>📧 ${client.email || "No email"}</p>
+
+                </div>
+            `;
+
+        });
+
+    }
 
     html += `
-        <br>
 
-        <button onclick="renderHome()">
-            ⬅ Back
-        </button>
+            <br>
+
+            <button onclick="renderHome()">
+                ⬅ Back
+            </button>
+
+        </div>
     `;
 
     document.getElementById("app").innerHTML = html;

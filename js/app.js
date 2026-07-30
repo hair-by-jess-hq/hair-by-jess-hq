@@ -76,7 +76,7 @@ function showClients() {
     document.getElementById("app").innerHTML = html;
 }
 
-function newClient() {
+function showAddClientForm() {
 
     const name = prompt("Client name");
 

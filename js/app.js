@@ -44,28 +44,36 @@ function renderHome() {
 function showClients() {
 
     let html = `
-        <h2>Clients</h2>
+        <h2>👩 Clients</h2>
 
-        <button onclick="newClient()">
+        <button onclick="showAddClientForm()">
             ➕ Add Client
         </button>
 
         <hr>
-
-        <ul>
     `;
 
     if (clients.length === 0) {
-        html += "<p>No clients yet.</p>";
+        html += `<p>No clients yet.</p>`;
     }
 
     clients.forEach(client => {
-        html += `<li>${client.name}</li>`;
+
+        html += `
+            <div class="client-card">
+
+                <h3>${client.name}</h3>
+
+                <p>📱 ${client.phone || ""}</p>
+
+                <p>📧 ${client.email || ""}</p>
+
+            </div>
+        `;
+
     });
 
     html += `
-        </ul>
-
         <br>
 
         <button onclick="renderHome()">
@@ -74,17 +82,6 @@ function showClients() {
     `;
 
     document.getElementById("app").innerHTML = html;
-}
-
-function showAddClientForm() {
-
-    const name = prompt("Client name");
-
-    if (!name) return;
-
-    addClient(name);
-
-    showClients();
 }
 
 renderHome();
